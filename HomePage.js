@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, Button } from 'react-native';
 
 class HomePage extends React.Component {
   static navigationOptions = {
@@ -10,12 +10,14 @@ class HomePage extends React.Component {
         style={[styles.icon, {tintColor: tintColor}]}
       />
     ),
+    title: 'Home',
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is HomePage.</Text>
+        <Text>This is Home Page.</Text>
+        <Button onPress={() => this.props.navigation.navigate('Trending')} title="Go to trending page."/>
       </View>
     );
   }

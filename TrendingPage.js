@@ -10,6 +10,7 @@ class TrendingPage extends React.Component {
         style={[styles.icon, {tintColor: tintColor}]}
       />
     ),
+    title: 'Trending',
   };
 
   render() {
