@@ -60,10 +60,11 @@ const getDimension = ({width, height}) => {
 const ResultItem = ({item}) => {
   const image = item.images.downsized;
   const dim = getDimension({width: parseInt(image.width, 10), height: parseInt(image.height, 10)});
+  const num = Math.ceil(Math.random()*100%colors.length);
   const randomColor = {
-    backgroundColor: colors[Math.random()*100%colors.length]
+    backgroundColor: colors[num]
   };
-  return <View style={styles.resultItem}>
+  return <View style={[styles.resultItem]}>
     <Image style={[styles.resultItemImage, dim, randomColor]} source={{uri: image.url}}/>
   </View>
 }
