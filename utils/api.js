@@ -57,13 +57,13 @@ const names = [
  */
 export const getNames = () => {
   return names.map((name, key) => ({name, key}));
-}
+};
 
 const encodeParams = (params) => {
-  return Object.key(params).reduce((query, key) => {
+  return Object.keys(params).reduce((query, key) => {
     return query.concat(`${key}=${params[key]}`);
   }, []).join('&');
-}
+};
 
 export const fetchGiphy = (path, input) => {
   const host = 'https://api.giphy.com';
@@ -72,22 +72,27 @@ export const fetchGiphy = (path, input) => {
     limit: 20,
     ...input
   }
-  const url = host + url + '?' + encodeParams(params);
-  return fetch(url).then(resp => resp.json());
-}
+  const url = host + path + '?' + encodeParams(params);
+  console.log("Fetching", url);
+  return fetch(url)
+    .then(resp => resp.json())
+    .catch(err => {
+      console.error(err, url);
+      return {};
+    });
+};
 
-export const getSearchItems = (q, offset = 0) => {
+export const getSearchResultItems = (q, offset = 0) => {
   const params = {
     q,
     offset
   };
   return fetchGiphy('/v1/gifs/search', params);
-}
+};
 
-export const getTrendingItems = (q, offset = 0) => {
+export const getTrendingItems = (offset = 0) => {
   const params = {
-    q,
     offset
   };
-  return fetchGiphy('/v1/gifs/search', params);
-}
+  return fetchGiphy('/v1/gifs/trending', params);
+};
