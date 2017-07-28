@@ -13,11 +13,25 @@ class HomePage extends React.Component {
     title: 'Home',
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewName: 'View disabled.'
+    }
+  }
+
+  enableView() {
+    this.setState({
+      viewName: 'View enabled'
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text>This is Home Page.</Text>
         <Button onPress={() => this.props.navigation.navigate('Trending')} title="Go to trending page."/>
+        <Button onPress={() => this.enableView()} title={this.state.viewName}/>
       </View>
     );
   }
