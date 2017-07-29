@@ -39,6 +39,7 @@ class HomePage extends React.Component {
             onChangeText={(text) => search.updateKeyword(text)}
             defaultValue={search.keyword}
             placeholder="Enter something..."
+            autoFocus={true}
           />
           <Button onPress={() => search.performSearch()} title="Go"/>
         </View>
